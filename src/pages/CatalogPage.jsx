@@ -1,6 +1,10 @@
+import CamperCard from "../components/CamperCard/CamperCard";
+
 const CatalogPage = () => {
     return (
-        <div>Catalog</div>
+        <>
+            <CamperCard />
+        </>
     );
 };
 
