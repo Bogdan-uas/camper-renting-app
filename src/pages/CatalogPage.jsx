@@ -1,9 +1,9 @@
-import CamperCard from "../components/CamperCard/CamperCard";
+import CamperList from "../components/CamperList/CamperList";
 
 const CatalogPage = () => {
     return (
         <>
-            <CamperCard />
+            <CamperList />
         </>
     );
 };

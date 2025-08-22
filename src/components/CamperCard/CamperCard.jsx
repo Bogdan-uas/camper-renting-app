@@ -22,7 +22,7 @@ const CamperCard = ({ camper }) => {
                 <div className={css.camper_name_container}>
                     <h2 className={css.camper_name}>{camper.name}</h2>
                     <div className={css.camper_price_container}>
-                        <span className={css.camper_price}>€{camper.price}</span>
+                        <span className={css.camper_name}>€{camper.price}</span>
                         <button className={css.heart_button}><Heart className={css.heart_icon} /></button>
                     </div>
                 </div>
@@ -31,7 +31,7 @@ const CamperCard = ({ camper }) => {
                     <div className={css.rating_container}>
                         <Rating />
                         <span className={css.rating_text}>
-                            {camper.rating} ({camper.reviews?.length || 0} Reviews)
+                            {camper.rating}({camper.reviews?.length || 0} Reviews)
                         </span>
                     </div>
                     <div className={css.rating_container}>
