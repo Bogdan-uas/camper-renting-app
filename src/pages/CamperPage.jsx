@@ -1,6 +1,8 @@
 const CamperPage = () => {
     return (
-        <div>Camper</div>
+        <section>
+            <div>Camper</div>
+        </section>
     );
 };
 

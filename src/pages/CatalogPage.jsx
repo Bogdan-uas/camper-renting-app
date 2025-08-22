@@ -3,7 +3,9 @@ import CamperList from "../components/CamperList/CamperList";
 const CatalogPage = () => {
     return (
         <>
-            <CamperList />
+            <section>
+                <CamperList />
+            </section>
         </>
     );
 };
