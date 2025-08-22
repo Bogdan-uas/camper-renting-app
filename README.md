@@ -20,6 +20,6 @@ There are two routes:
 
 ## Author
 
-Bogdan-uas, GitHub nickname
+[Bogdan-uas](https://github.com/Bogdan-uas), GitHub nickname
 
 Bohdan Makovei, real name.
