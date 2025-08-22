@@ -26,20 +26,24 @@ const CamperList = () => {
     }, [dispatch]);
 
     if (isLoading) return <p>Loading campers...</p>;
-    if (error) return <p>{error}</p>;
-    if (campers.length === 0) return <p>No campers found.</p>;
 
     return (
         <div className={css.camper_list_container}>
             <ul className={css.camper_list}>
-                {campers.slice(0, visibleCount).map((camper) => (
-                    <li key={camper.id}>
-                        <CamperCard camper={camper} />
-                    </li>
-                ))}
+                {error ? (
+                    <div className={css.card_placeholder}>{error}</div>
+                ) : campers.length === 0 ? (
+                    <div className={css.card_placeholder}>No campers found.</div>
+                ) : (
+                    campers.slice(0, visibleCount).map((camper) => (
+                        <li key={camper.id}>
+                            <CamperCard camper={camper} />
+                        </li>
+                    ))
+                )}
             </ul>
 
-            {hasMore && (
+            {!error && hasMore && campers.length > 0 && (
                 <button
                     onClick={() => dispatch(loadMore())}
                     className={css.load_more_btn}

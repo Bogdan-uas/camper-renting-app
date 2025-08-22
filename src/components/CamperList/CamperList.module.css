@@ -2,8 +2,6 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 48px;
-    margin-bottom: 52px;
 }
 
 .camper_list {
@@ -29,4 +27,19 @@
 
 .load_more_btn:hover {
     border: 1px solid #d84343;
+}
+
+.card_placeholder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #dadde1;
+    font-size: 18px;
+    padding: 50px;
+    white-space: nowrap;
+    border-radius: 20px;
+    border: 1px solid #dadde1;
+    background: #ffffff;
+    width: 888px;
+    height: 308px;
 }

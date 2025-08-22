@@ -1,6 +1,7 @@
 import css from './CategoryCard.module.css';
 
 const formatLabel = (label) => {
+    // Format the label to be sure, every label is capitalized and if it's an abbreviation, it stays uppercase
     if (label.length <= 3 && label === label.toUpperCase()) {
         return label;
     }

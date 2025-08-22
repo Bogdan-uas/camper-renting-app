@@ -1,0 +1,7 @@
+.catalog_page {
+    display: flex;
+    justify-content: center;
+    gap: 64px;
+    padding-top: 48px;
+    padding-bottom: 52px;
+}

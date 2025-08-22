@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "../Layout/Layout";
 
 const HomePage = lazy(() => import("../../pages/HomePage"));
-const CatalogPage = lazy(() => import("../../pages/CatalogPage"));
+const CatalogPage = lazy(() => import("../../pages/CatalogPage/CatalogPage"));
 const CamperPage = lazy(() => import("../../pages/CamperPage"));
 const NotFoundPage = lazy(() => import("../../pages/NotFoundPage"));
 

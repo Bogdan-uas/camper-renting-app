@@ -18,6 +18,7 @@ import TV from '../../assets/icons/category-icons/tv.svg?react';
 import Water from '../../assets/icons/category-icons/water.svg?react';
 
 const CamperCard = ({ camper }) => {
+    // Camper features, are needed for mapping the CategoryCards (so there are multiple of them on the card)
     const features = [
         camper.AC && { icon: AC, label: "AC" },
         camper.kitchen && { icon: Cup, label: "Kitchen" },
@@ -76,6 +77,7 @@ const CamperCard = ({ camper }) => {
                 <ReusableButton
                     text="Show More"
                     linkPath={`/catalog/${camper.id}`}
+                    // custom width and padding, because there are multiple ReusableButtons on the site, which are different on these styles
                     customWidth="166px"
                     customPadding="16px 40px"
                 />
