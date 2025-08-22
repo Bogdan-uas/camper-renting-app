@@ -1,13 +1,19 @@
 import css from './CategoryCard.module.css';
-import Transmission from '../../../assets/icons/category-icons/transmission.svg?react';
 
-const CategoryCard = () => {
+const formatLabel = (label) => {
+    if (label.length <= 3 && label === label.toUpperCase()) {
+        return label;
+    }
+    return label.charAt(0).toUpperCase() + label.slice(1).toLowerCase();
+};
+
+const CategoryCard = ({ icon: Icon, label }) => {
     return (
         <div className={css.category_card}>
-            <Transmission />
-            Automatic
+            <Icon className={css.icon} />
+            <span className={css.label}>{formatLabel(label)}</span>
         </div>
     );
-}
+};
 
 export default CategoryCard;
