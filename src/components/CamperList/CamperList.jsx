@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCampers } from "../../redux/campers/campersOps";
-import { loadMore, resetVisibleCount } from "../../redux/campers/campersSlice";
 import {
     selectFilteredCampers,
     selectIsLoading,
@@ -10,6 +9,8 @@ import {
     selectHasMore,
 } from "../../redux/selectors";
 import CamperCard from "../CamperCard/CamperCard";
+import LoadMoreButton from "../reusables/LoadMoreButton/LoadMoreButton";
+import { resetVisibleCount } from "../../redux/campers/campersSlice";
 import css from "./CamperList.module.css";
 
 const CamperList = () => {
@@ -27,6 +28,8 @@ const CamperList = () => {
 
     if (isLoading) return <p>Loading campers...</p>;
 
+    const allRendered = campers.length > 0 && visibleCount >= campers.length;
+
     return (
         <div className={css.camper_list_container}>
             <ul className={css.camper_list}>
@@ -43,13 +46,8 @@ const CamperList = () => {
                 )}
             </ul>
 
-            {!error && hasMore && campers.length > 0 && (
-                <button
-                    onClick={() => dispatch(loadMore())}
-                    className={css.load_more_btn}
-                >
-                    Load More
-                </button>
+            {!error && campers.length > 0 && (
+                <LoadMoreButton hasMore={hasMore} allRendered={allRendered} />
             )}
         </div>
     );
