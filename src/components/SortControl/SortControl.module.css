@@ -79,19 +79,11 @@
     background-color: #dadde1;
 }
 
-.custom_checkbox {
-    border: 1px solid #dadde1;
+.sort_cards_container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    border-radius: 12px;
-    width: 90px;
-    color: #dadde1;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 24px;
-    letter-spacing: -0.08px;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+    width: 360px;
+    margin-bottom: 32px;
 }

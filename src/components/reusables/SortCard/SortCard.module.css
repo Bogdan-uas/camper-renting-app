@@ -1,0 +1,48 @@
+.sort_card_label {
+    border: 1px solid #dadde1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 12px;
+    width: 112px;
+    height: 96px;
+}
+
+.sort_card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    color: #101828;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.08px;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    transition: all 300ms ease-in-out;
+}
+
+.sort_card_icon {
+    width: 32px;
+    height: 32px;
+}
+
+.sort_card_label input:checked + .sort_card {
+    border: 1px solid #e44848;
+}
+
+.sort_card_label:hover .sort_card {
+    border: 1px solid #f19292;
+}
+
+.sort_card_label:hover input:checked + .sort_card {
+    border: 1px solid #ffbebe;
+}
