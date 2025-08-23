@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCampers } from "../../redux/campersOps";
-import { loadMore, resetVisibleCount } from "../../redux/campersSlice";
+import { fetchCampers } from "../../redux/campers/campersOps";
+import { loadMore, resetVisibleCount } from "../../redux/campers/campersSlice";
 import {
-    selectCampers,
+    selectFilteredCampers,
     selectIsLoading,
     selectError,
     selectVisibleCount,
@@ -14,7 +14,7 @@ import css from "./CamperList.module.css";
 
 const CamperList = () => {
     const dispatch = useDispatch();
-    const campers = useSelector(selectCampers);
+    const campers = useSelector(selectFilteredCampers);
     const isLoading = useSelector(selectIsLoading);
     const error = useSelector(selectError);
     const visibleCount = useSelector(selectVisibleCount);

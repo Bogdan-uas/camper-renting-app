@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { campersReducer } from "./campersSlice";
-import { filtersReducer } from "./filtersSlice";
+import { campersReducer } from "./campers/campersSlice";
+import { filtersReducer } from "./filters/filtersSlice";
 
 export const store = configureStore({
     reducer: {

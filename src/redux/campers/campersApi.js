@@ -1,4 +1,4 @@
-import { instance } from "./api/axiosInstance";
+import { instance } from "../api/axiosInstance";
 
 export const getCampers = async () => {
     const response = await instance.get("/campers");
