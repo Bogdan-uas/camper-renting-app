@@ -31,15 +31,13 @@ const filtersSlice = createSlice({
         setDraftLocation(state, action) {
             state.draft.location = action.payload;
         },
-
         applyFilters(state) {
             state.applied = { ...state.draft };
         },
-
         resetFilters(state) {
             state.draft = { equipment: [], vehicleType: "", location: "" };
             state.applied = { equipment: [], vehicleType: "", location: "" };
-        }
+        },
     },
 });
 

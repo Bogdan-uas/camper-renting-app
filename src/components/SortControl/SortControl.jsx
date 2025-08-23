@@ -5,6 +5,7 @@ import {
     setDraftVehicleType,
     setDraftLocation,
     applyFilters,
+    resetFilters,
 } from "../../redux/filters/filtersSlice";
 import { resetVisibleCount } from "../../redux/campers/campersSlice";
 
@@ -131,11 +132,23 @@ const SortControl = () => {
                 </div>
             </div>
 
+            <div className={css.buttons_container}>
+            <ReusableButton
+                text="Reset"
+                type="button"
+                customPadding="16px 60px"
+                variant="reset"
+                onClick={() => {
+                    dispatch(resetFilters());
+                    dispatch(resetVisibleCount());
+                }}
+            />
             <ReusableButton
                 text="Search"
                 type="submit"
                 customPadding="16px 56.5px"
-            />
+                />
+                </div>
         </form>
     );
 };

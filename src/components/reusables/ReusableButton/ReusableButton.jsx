@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
 import css from "./ReusableButton.module.css";
 
-const ReusableButton = ({ text, linkPath, onClick, type, customWidth, customPadding }) => {
+const ReusableButton = ({ text, linkPath, onClick, type, customWidth, customPadding, variant }) => {
+    const buttonClass = variant === "reset" ? css.resetButton : css.button;
+
     if (linkPath) {
         return (
-            <Link to={linkPath} className={css.button} style={{ width: customWidth, padding: customPadding }}>
+            <Link
+                to={linkPath}
+                className={buttonClass}
+                style={{ width: customWidth, padding: customPadding }}
+            >
                 {text}
             </Link>
         );
@@ -14,7 +20,7 @@ const ReusableButton = ({ text, linkPath, onClick, type, customWidth, customPadd
         <button
             type={type || "button"}
             onClick={onClick}
-            className={css.button}
+            className={buttonClass}
             style={{ width: customWidth, padding: customPadding }}
         >
             {text}

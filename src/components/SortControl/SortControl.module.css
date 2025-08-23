@@ -113,3 +113,10 @@
 .dropdown li:hover {
     background-color: #f1f1f1;
 }
+
+.buttons_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
