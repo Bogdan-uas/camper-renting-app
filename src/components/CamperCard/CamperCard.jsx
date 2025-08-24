@@ -1,3 +1,7 @@
+import { useDispatch, useSelector } from "react-redux";
+import { toggleFavorite } from "../../redux/favorites/favoritesSlice";
+import { selectFavorites } from "../../redux/selectors";
+
 import css from './CamperCard.module.css';
 import Rating from '../../assets/icons/rating/rating.svg?react';
 import Map from '../../assets/icons/map/map.svg?react';
@@ -18,6 +22,9 @@ import TV from '../../assets/icons/category-icons/tv.svg?react';
 import Water from '../../assets/icons/category-icons/water.svg?react';
 
 const CamperCard = ({ camper }) => {
+    const dispatch = useDispatch();
+    const favorites = useSelector(selectFavorites);
+    const isFavorite = favorites.includes(camper.id);
     // Camper features, are needed for mapping the CategoryCards (so there are multiple of them on the card)
     const features = [
         camper.AC && { icon: AC, label: "AC" },
@@ -32,6 +39,10 @@ const CamperCard = ({ camper }) => {
         camper.TV && { icon: TV, label: "TV" },
         camper.water && { icon: Water, label: "Water" },
     ].filter(Boolean);
+
+    const handleToggleFavorite = () => {
+        dispatch(toggleFavorite(camper.id));
+    };
     return (
         <div className={css.camper_card}>
             {camper.gallery[0].thumb ? (
@@ -49,7 +60,12 @@ const CamperCard = ({ camper }) => {
                     <h2 className={css.camper_name}>{camper.name}</h2>
                     <div className={css.camper_price_container}>
                         <span className={css.camper_name}>€{camper.price}.00</span>
-                        <button className={css.heart_button}><Heart className={css.heart_icon} /></button>
+                        <button
+                            className={`${css.heart_button} ${isFavorite ? css.active : ""}`}
+                            onClick={handleToggleFavorite}
+                        >
+                            <Heart className={css.heart_icon} />
+                        </button>
                     </div>
                 </div>
 

@@ -74,6 +74,10 @@
     scale: 1.1;
 }
 
+.heart_button.active .heart_icon {
+    color: #c60000;
+}
+
 .rating_location_container {
     display: flex;
     align-items: center;

@@ -18,3 +18,5 @@ export const selectFilteredCampers = createSelector(
         return result;
     }
 );
+
+export const selectFavorites = (state) => state.favorites.items;

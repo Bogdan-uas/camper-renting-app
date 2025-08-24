@@ -133,6 +133,7 @@ const SortControl = () => {
             </div>
 
             <div className={css.buttons_container}>
+                {/* custom paddings, because there are multiple ReusableButtons on the site, which are different on these styles */}
             <ReusableButton
                 text="Reset"
                 type="button"
