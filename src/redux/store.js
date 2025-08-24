@@ -15,6 +15,7 @@ import { campersReducer } from "./campers/campersSlice";
 import { filtersReducer } from "./filters/filtersSlice";
 import { favoritesReducer } from "./favorites/favoritesSlice";
 import { camperSliderReducer } from "./campers/camperSlidersSlice";
+import { camperTabReducer } from './ui/camperTabSlice';
 
 const filtersPersistConfig = {
     key: "filters",
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
     filters: persistReducer(filtersPersistConfig, filtersReducer),
     favorites: persistReducer(favoritesPersistConfig, favoritesReducer),
     slider: camperSliderReducer,
+    camperTab: camperTabReducer,
 });
 
 export const store = configureStore({

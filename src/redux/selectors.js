@@ -20,4 +20,7 @@ export const selectFilteredCampers = createSelector(
 );
 
 export const selectFavorites = (state) => state.favorites.items;
+
 export const selectCurrentIndex = (state) => state.slider.currentIndex;
+
+export const selectActiveTab = (state) => state.camperTab.activeTab;
