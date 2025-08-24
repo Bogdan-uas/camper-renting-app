@@ -2,7 +2,7 @@ import { createSelector } from "@reduxjs/toolkit";
 import { filterCampers } from "../utils/filterCampers";
 
 export const selectCampers = (state) => state.campers.items;
-export const selectCurrentCamper = (state) => state.campers.currentCamper;
+export const selectCamperById = (id) => (state) => state.campers.items.find((camper) => camper.id === id);
 export const selectIsLoading = (state) => state.campers.isLoading;
 export const selectError = (state) => state.campers.error;
 
@@ -20,3 +20,4 @@ export const selectFilteredCampers = createSelector(
 );
 
 export const selectFavorites = (state) => state.favorites.items;
+export const selectCurrentIndex = (state) => state.slider.currentIndex;

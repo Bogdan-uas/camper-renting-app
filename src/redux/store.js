@@ -14,6 +14,7 @@ import storage from "redux-persist/lib/storage";
 import { campersReducer } from "./campers/campersSlice";
 import { filtersReducer } from "./filters/filtersSlice";
 import { favoritesReducer } from "./favorites/favoritesSlice";
+import { camperSliderReducer } from "./campers/camperSlidersSlice";
 
 const filtersPersistConfig = {
     key: "filters",
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
     campers: campersReducer,
     filters: persistReducer(filtersPersistConfig, filtersReducer),
     favorites: persistReducer(favoritesPersistConfig, favoritesReducer),
+    slider: camperSliderReducer,
 });
 
 export const store = configureStore({

@@ -1,7 +1,9 @@
+import CamperInfo from "../components/CamperInfo/CamperInfo";
+
 const CamperPage = () => {
     return (
         <section>
-            <div>Camper</div>
+            <CamperInfo />
         </section>
     );
 };
