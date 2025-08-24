@@ -1,9 +1,14 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loadMore, resetVisibleCount } from "../../../redux/campers/campersSlice";
+import { selectVisibleCount, selectFilteredCampers } from "../../../redux/selectors";
 import css from "./LoadMoreButton.module.css";
 
-const LoadMoreButton = ({ hasMore, allRendered }) => {
+const LoadMoreButton = ({ allRendered }) => {
     const dispatch = useDispatch();
+    const visibleCount = useSelector(selectVisibleCount);
+    const campers = useSelector(selectFilteredCampers);
+
+    const hasMore = visibleCount < campers.length;
 
     if (!hasMore && !allRendered) return null;
 
@@ -17,7 +22,7 @@ const LoadMoreButton = ({ hasMore, allRendered }) => {
 
     return (
         <button onClick={handleClick} className={css.load_more_btn}>
-            {hasMore ? "Load More" : "Show Less"}
+            {allRendered ? "Show Less" : "Load More"}
         </button>
     );
 };

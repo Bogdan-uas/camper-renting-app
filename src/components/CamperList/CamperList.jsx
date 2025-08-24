@@ -6,7 +6,6 @@ import {
     selectIsLoading,
     selectError,
     selectVisibleCount,
-    selectHasMore,
 } from "../../redux/selectors";
 import CamperCard from "../CamperCard/CamperCard";
 import LoadMoreButton from "../reusables/LoadMoreButton/LoadMoreButton";
@@ -19,7 +18,6 @@ const CamperList = () => {
     const isLoading = useSelector(selectIsLoading);
     const error = useSelector(selectError);
     const visibleCount = useSelector(selectVisibleCount);
-    const hasMore = useSelector(selectHasMore);
 
     useEffect(() => {
         dispatch(fetchCampers());
@@ -28,7 +26,7 @@ const CamperList = () => {
 
     if (isLoading) return <p>Loading campers...</p>;
 
-    const allRendered = campers.length > 0 && visibleCount >= campers.length;
+    const allRendered = visibleCount >= campers.length;
 
     return (
         <div className={css.camper_list_container}>
@@ -36,7 +34,7 @@ const CamperList = () => {
                 {error ? (
                     <div className={css.card_placeholder}>{error}</div>
                 ) : campers.length === 0 ? (
-                    <div className={css.card_placeholder}>No campers found.</div>
+                    <div className={css.card_placeholder}>There is no such camper yet.</div>
                 ) : (
                     campers.slice(0, visibleCount).map((camper) => (
                         <li key={camper.id}>
@@ -46,8 +44,8 @@ const CamperList = () => {
                 )}
             </ul>
 
-            {!error && campers.length > 0 && (
-                <LoadMoreButton hasMore={hasMore} allRendered={allRendered} />
+            {!error && campers.length > 4 && (
+                <LoadMoreButton allRendered={allRendered} />
             )}
         </div>
     );
