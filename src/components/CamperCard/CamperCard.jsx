@@ -79,7 +79,7 @@ const CamperCard = ({ camper }) => {
                 </div>
 
                 <div className={css.rating_location_container}>
-                    <Link to={`/catalog/${camper.id}#reviews`} className={css.rating_container}>
+                    <Link to={`/catalog/${camper.id}#reviews`} target="_blank" className={css.rating_container}>
                         <Rating />
                         <span className={css.rating_text}>
                             {averageRating} ({reviews.length} Reviews)
@@ -105,6 +105,7 @@ const CamperCard = ({ camper }) => {
                     // custom width and padding, because there are multiple ReusableButtons on the site, which are different on these styles
                     customWidth="166px"
                     customPadding="16px 40px"
+                    target="_blank"
                 />
             </div>
         </div>
