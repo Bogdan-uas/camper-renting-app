@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCampers } from "../../redux/campers/campersOps";
 import {
     selectFilteredCampers,
-    selectIsLoading,
     selectError,
     selectVisibleCount,
 } from "../../redux/selectors";
@@ -15,7 +14,6 @@ import css from "./CamperList.module.css";
 const CamperList = () => {
     const dispatch = useDispatch();
     const campers = useSelector(selectFilteredCampers);
-    const isLoading = useSelector(selectIsLoading);
     const error = useSelector(selectError);
     const visibleCount = useSelector(selectVisibleCount);
 
@@ -23,8 +21,6 @@ const CamperList = () => {
         dispatch(fetchCampers());
         dispatch(resetVisibleCount());
     }, [dispatch]);
-
-    if (isLoading) return <p>Loading campers...</p>;
 
     const allRendered = visibleCount >= campers.length;
 

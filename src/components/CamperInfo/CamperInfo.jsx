@@ -4,14 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCampers } from "../../redux/campers/campersOps";
 import {
     selectCamperById,
-    selectIsLoading,
     selectError,
     selectCurrentIndex,
 } from "../../redux/selectors";
 import { setCurrentIndex } from "../../redux/campers/camperSlidersSlice";
 
 import css from './CamperInfo.module.css';
-import Rating from '../../assets/icons/rating/rating.svg?react';
+import Rating from '../../assets/icons/rating/live-rating.svg?react';
 import Map from '../../assets/icons/map/map.svg?react';
 
 const CamperInfo = () => {
@@ -19,7 +18,6 @@ const CamperInfo = () => {
     const dispatch = useDispatch();
 
     const camper = useSelector(selectCamperById(id));
-    const isLoading = useSelector(selectIsLoading);
     const error = useSelector(selectError);
     const currentIndex = useSelector(selectCurrentIndex);
 
@@ -31,9 +29,14 @@ const CamperInfo = () => {
         }
     }, [dispatch, camper]);
 
-    if (isLoading) return <p>Loading camper...</p>;
     if (error) return <p>{error}</p>;
     if (!camper) return <p>Camper not found.</p>;
+
+    const reviews = camper.reviews || [];
+    const averageRating =
+        reviews.length > 0
+            ? (reviews.reduce((sum, r) => sum + r.reviewer_rating, 0) / reviews.length).toFixed(1)
+            : 0;
 
     const gallery = [...camper.gallery, ...camper.gallery];
     const handleNext = () => {
@@ -61,7 +64,7 @@ const CamperInfo = () => {
                         <div className={css.rating_container}>
                             <Rating />
                             <span className={css.rating_text}>
-                                {camper.rating} ({camper.reviews?.length || 0} Reviews)
+                                {averageRating} ({reviews.length} Reviews)
                             </span>
                         </div>
                         <div className={css.rating_container}>

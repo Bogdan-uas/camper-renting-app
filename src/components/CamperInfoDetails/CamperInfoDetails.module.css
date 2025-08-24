@@ -52,5 +52,7 @@
 }
 
 .tab_content {
+    display: flex;
+    gap: 40px;
     padding: 44px 64px 80px;
 } 

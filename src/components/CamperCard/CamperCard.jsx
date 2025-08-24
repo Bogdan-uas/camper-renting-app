@@ -3,7 +3,7 @@ import { toggleFavorite } from "../../redux/favorites/favoritesSlice";
 import { selectFavorites } from "../../redux/selectors";
 
 import css from './CamperCard.module.css';
-import Rating from '../../assets/icons/rating/rating.svg?react';
+import Rating from '../../assets/icons/rating/live-rating.svg?react';
 import Map from '../../assets/icons/map/map.svg?react';
 import Heart from '../../assets/icons/heart/heart.svg?react';
 import CategoryCard from '../reusables/CategoryCard/CategoryCard';
@@ -20,12 +20,14 @@ import Shower from '../../assets/icons/category-icons/shower.svg?react';
 import Transmission from '../../assets/icons/category-icons/transmission.svg?react';
 import TV from '../../assets/icons/category-icons/tv.svg?react';
 import Water from '../../assets/icons/category-icons/water.svg?react';
+import { Link } from "react-router-dom";
 
 const CamperCard = ({ camper }) => {
     const dispatch = useDispatch();
     const favorites = useSelector(selectFavorites);
     const isFavorite = favorites.includes(camper.id);
-    // Camper features, are needed for mapping the CategoryCards (so there are multiple of them on the card)
+
+    // Camper features
     const features = [
         camper.AC && { icon: AC, label: "AC" },
         camper.kitchen && { icon: Cup, label: "Kitchen" },
@@ -43,6 +45,13 @@ const CamperCard = ({ camper }) => {
     const handleToggleFavorite = () => {
         dispatch(toggleFavorite(camper.id));
     };
+
+    const reviews = camper.reviews || [];
+    const averageRating =
+        reviews.length > 0
+            ? (reviews.reduce((sum, r) => sum + r.reviewer_rating, 0) / reviews.length).toFixed(1)
+            : 0;
+
     return (
         <div className={css.camper_card}>
             {camper.gallery[0].thumb ? (
@@ -70,13 +79,13 @@ const CamperCard = ({ camper }) => {
                 </div>
 
                 <div className={css.rating_location_container}>
-                    <div className={css.rating_container}>
+                    <Link to={`/catalog/${camper.id}#reviews`} className={css.rating_container}>
                         <Rating />
                         <span className={css.rating_text}>
-                            {camper.rating}({camper.reviews?.length || 0} Reviews)
+                            {averageRating} ({reviews.length} Reviews)
                         </span>
-                    </div>
-                    <div className={css.rating_container}>
+                    </Link>
+                    <div className={css.location_container}>
                         <Map />
                         <span className={css.rating_text}>{camper.location}</span>
                     </div>

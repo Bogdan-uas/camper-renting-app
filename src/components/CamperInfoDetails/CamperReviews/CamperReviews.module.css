@@ -1,0 +1,60 @@
+.camper_reviews_list {
+    display: flex;
+    flex-direction: column;
+    gap: 44px;
+}
+
+.camper_review_container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 631px;
+}
+
+.camper_reviewer_container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.camper_reviewer_avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background-color: #f2f4f7;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.33333;
+    color: #e44848;
+}
+
+.camper_review_name_rating_container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.camper_reviewer_name {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #101828;
+}
+
+.camper_review_stars {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.camper_review_text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #475467;
+}

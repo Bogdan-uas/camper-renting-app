@@ -23,6 +23,7 @@ import Water from '../../assets/icons/category-icons/water.svg?react';
 import css from './CamperInfoDetails.module.css';
 import CamperDetails from './CamperDetails/CamperDetails';
 import CamperReviews from './CamperReviews/CamperReviews';
+import CamperBookForm from './CamperBookForm/CamperBookForm';
 
 const CamperInfoDetails = () => {
     const dispatch = useDispatch();
@@ -79,12 +80,15 @@ const CamperInfoDetails = () => {
             </div>
             <div className={css.divider} />
 
-            <div className={css.tab_content}>
+            <ul className={css.tab_content}>
                 {activeTab === "details" &&
                     <CamperDetails camper={camper} features={features} />
                 }
-                {activeTab === "reviews" && <CamperReviews />}
-            </div>
+                {activeTab === "reviews" &&
+                    <CamperReviews camper={camper} />
+                }
+                <li><CamperBookForm /></li>
+            </ul>
         </div>
     );
 };
