@@ -4,7 +4,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     width: max-content;
-    margin-inline: auto;
+    margin-inline-end: auto;
     gap: 16px;
     position: relative;
 }
@@ -40,10 +40,17 @@
     color: #e44848;
 }
 
+.tab_button:disabled {
+    pointer-events: none;
+}
+
 .divider {
     height: 1px;
     width: 100%;
     background-color: #dadde1;
     margin-top: 24px;
-    margin-bottom: 44px;
 }
+
+.tab_content {
+    padding: 44px 64px 80px;
+} 
