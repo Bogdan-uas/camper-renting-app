@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCampers } from "../../redux/campers/campersOps";
 import {
     selectCamperById,
-    selectError,
     selectCurrentIndex,
 } from "../../redux/selectors";
 import { setCurrentIndex } from "../../redux/campers/camperSlidersSlice";
@@ -18,7 +17,6 @@ const CamperInfo = () => {
     const dispatch = useDispatch();
 
     const camper = useSelector(selectCamperById(id));
-    const error = useSelector(selectError);
     const currentIndex = useSelector(selectCurrentIndex);
 
     const windowSize = 4;
@@ -29,7 +27,6 @@ const CamperInfo = () => {
         }
     }, [dispatch, camper]);
 
-    if (error) return <p>{error}</p>;
     if (!camper) return <p>Camper not found.</p>;
 
     const reviews = camper.reviews || [];
