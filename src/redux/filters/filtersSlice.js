@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { fetchFilteredCampers } from "../campers/campersOps";
 
 const initialState = {
     draft: {
@@ -31,7 +32,7 @@ const filtersSlice = createSlice({
         setDraftLocation(state, action) {
             state.draft.location = action.payload;
         },
-        applyFilters(state) {
+        applyFiltersLocal(state) {
             state.applied = { ...state.draft };
         },
         resetFilters(state) {
@@ -45,8 +46,14 @@ export const {
     toggleDraftEquipment,
     setDraftVehicleType,
     setDraftLocation,
-    applyFilters,
+    applyFiltersLocal,
     resetFilters,
 } = filtersSlice.actions;
 
 export const filtersReducer = filtersSlice.reducer;
+
+export const applyFilters = () => (dispatch, getState) => {
+    dispatch(applyFiltersLocal());
+    const { applied } = getState().filters;
+    dispatch(fetchFilteredCampers(applied));
+};

@@ -68,7 +68,7 @@ const CamperCard = ({ camper }) => {
                 <div className={css.camper_name_container}>
                     <h2 className={css.camper_name}>{camper.name}</h2>
                     <div className={css.camper_price_container}>
-                        <span className={css.camper_name}>€{camper.price}.00</span>
+                        <span className={css.camper_name}>€{camper.price}</span>
                         <button
                             className={`${css.heart_button} ${isFavorite ? css.active : ""}`}
                             onClick={handleToggleFavorite}

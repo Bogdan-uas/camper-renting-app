@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
     toggleDraftEquipment,
@@ -22,15 +22,30 @@ import Van from '../../assets/icons/type-icons/van.svg?react';
 
 import SortCard from '../reusables/SortCard/SortCard';
 import ReusableButton from '../reusables/ReusableButton/ReusableButton';
-import { selectCampers } from "../../redux/selectors";
+import { selectCampers, selectDraftFilters, selectAppliedFilters } from "../../redux/selectors";
 import css from './SortControl.module.css';
 
 const SortControl = () => {
     const dispatch = useDispatch();
-    const draft = useSelector(state => state.filters.draft);
+    const draft = useSelector(selectDraftFilters);
+    const appliedFilters = useSelector(selectAppliedFilters);
     const campers = useSelector(selectCampers);
 
     const [showDropdown, setShowDropdown] = useState(false);
+
+    useEffect(() => {
+        if (!appliedFilters) return;
+
+        dispatch(resetFilters());
+
+        if (appliedFilters.vehicleType) {
+            dispatch(setDraftVehicleType(appliedFilters.vehicleType));
+        }
+        if (appliedFilters.location) {
+            dispatch(setDraftLocation(appliedFilters.location));
+        }
+        appliedFilters.equipment?.forEach(eq => dispatch(toggleDraftEquipment(eq)));
+    }, []);
 
     const cities = useMemo(() => {
         const allLocations = campers.map(c => c.location);
@@ -38,11 +53,11 @@ const SortControl = () => {
     }, [campers]);
 
     const filteredCities = useMemo(() => {
-        if (!draft.location) return cities;
-        return cities.filter(city =>
-            city.toLowerCase().includes(draft.location.toLowerCase())
-        );
-    }, [cities, draft.location]);
+        if (!showDropdown) return [];
+        const searchValue = draft.location?.trim().toLowerCase();
+        if (!searchValue) return cities;
+        return cities.filter(city => city.toLowerCase().includes(searchValue));
+    }, [cities, draft.location, showDropdown]);
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -50,6 +65,12 @@ const SortControl = () => {
         dispatch(applyFilters());
         dispatch(fetchFilteredCampers(draft));
         setShowDropdown(false);
+    };
+
+    const handleReset = () => {
+        dispatch(resetFilters());
+        dispatch(resetVisibleCount());
+        dispatch(fetchFilteredCampers({}));
     };
 
     const handleSelectCity = (city) => {
@@ -95,6 +116,7 @@ const SortControl = () => {
             </div>
 
             <span className={css.filters_label}>Filters</span>
+
             <div className={css.filters_container}>
                 <span className={css.filters_vehicle_label}>Vehicle Equipment</span>
                 <div className={css.divider} />
@@ -112,8 +134,8 @@ const SortControl = () => {
                         checked={draft.equipment.includes("TV")}
                         onChange={() => dispatch(toggleDraftEquipment("TV"))} />
                     <SortCard icon={Shower} text="Bathroom" type="checkbox"
-                        checked={draft.equipment.includes("Bathroom")}
-                        onChange={() => dispatch(toggleDraftEquipment("Bathroom"))} />
+                        checked={draft.equipment.includes("bathroom")}
+                        onChange={() => dispatch(toggleDraftEquipment("bathroom"))} />
                 </div>
             </div>
 
@@ -139,11 +161,7 @@ const SortControl = () => {
                     type="button"
                     customPadding="16px 60px"
                     variant="reset"
-                    onClick={() => {
-                        dispatch(resetFilters());
-                        dispatch(resetVisibleCount());
-                        dispatch(fetchFilteredCampers({}));
-                    }}
+                    onClick={handleReset}
                 />
                 <ReusableButton
                     text="Search"

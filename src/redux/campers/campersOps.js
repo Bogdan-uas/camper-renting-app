@@ -32,29 +32,17 @@ export const fetchFilteredCampers = createAsyncThunk(
             const params = new URLSearchParams();
 
             if (filters.location) params.append("location", filters.location);
-
-            if (filters.vehicleType) params.append("form", filters.vehicleType.toLowerCase());
+            if (filters.vehicleType) params.append("form", filters.vehicleType);
 
             if (filters.equipment?.length) {
                 filters.equipment.forEach(eq => {
                     switch (eq) {
-                        case "AC":
-                            params.append("AC", true);
-                            break;
-                        case "TV":
-                            params.append("TV", true);
-                            break;
-                        case "Kitchen":
-                            params.append("kitchen", true);
-                            break;
-                        case "Bathroom":
-                            params.append("bathroom", true);
-                            break;
-                        case "Automatic":
-                            params.append("transmission", "automatic");
-                            break;
-                        default:
-                            break;
+                        case "AC": params.append("AC", true); break;
+                        case "TV": params.append("TV", true); break;
+                        case "Kitchen": params.append("kitchen", true); break;
+                        case "Bathroom": params.append("bathroom", true); break;
+                        case "Automatic": params.append("transmission", "automatic"); break;
+                        default: break;
                     }
                 });
             }

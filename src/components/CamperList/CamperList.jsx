@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCampers } from "../../redux/campers/campersOps";
+import { fetchFilteredCampers } from "../../redux/campers/campersOps";
 import {
-    selectFilteredCampers,
+    selectCampers,
     selectError,
     selectVisibleCount,
+    selectAppliedFilters,
 } from "../../redux/selectors";
 import CamperCard from "../CamperCard/CamperCard";
 import LoadMoreButton from "../reusables/LoadMoreButton/LoadMoreButton";
@@ -13,14 +14,15 @@ import css from "./CamperList.module.css";
 
 const CamperList = () => {
     const dispatch = useDispatch();
-    const campers = useSelector(selectFilteredCampers);
+    const campers = useSelector(selectCampers);
     const error = useSelector(selectError);
     const visibleCount = useSelector(selectVisibleCount);
+    const appliedFilters = useSelector(selectAppliedFilters);
 
     useEffect(() => {
-        dispatch(fetchCampers());
+        dispatch(fetchFilteredCampers(appliedFilters));
         dispatch(resetVisibleCount());
-    }, [dispatch]);
+    }, [dispatch, appliedFilters]);
 
     const allRendered = visibleCount >= campers.length;
 

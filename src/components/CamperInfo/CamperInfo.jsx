@@ -71,7 +71,7 @@ const CamperInfo = () => {
                     </div>
                 </div>
 
-                <span className={`${css.camper_name} ${css.price}`}>€{camper.price}.00</span>
+                <span className={`${css.camper_name} ${css.price}`}>€{camper.price}</span>
 
                 <div className={css.slider_container}>
                     <button className={css.slider_btn} onClick={handlePrev}>&lt;</button>

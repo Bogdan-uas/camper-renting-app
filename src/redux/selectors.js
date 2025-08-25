@@ -1,6 +1,3 @@
-import { createSelector } from "@reduxjs/toolkit";
-import { filterCampers } from "../utils/filterCampers";
-
 export const selectCampers = (state) => state.campers.items;
 export const selectCamperById = (id) => (state) => state.campers.items.find((camper) => camper.id === id);
 export const selectIsLoading = (state) => state.campers.isLoading;
@@ -11,16 +8,12 @@ export const selectHasMore = (state) => state.campers.visibleCount < state.campe
 
 export const selectAppliedFilters = (state) => state.filters.applied;
 
-export const selectFilteredCampers = createSelector(
-    [selectCampers, selectAppliedFilters],
-    (campers, filters) => {
-        const result = filterCampers(campers, filters);
-        return result;
-    }
-);
+export const selectFilteredCampers = selectCampers;
 
 export const selectFavorites = (state) => state.favorites.items;
 
 export const selectCurrentIndex = (state) => state.slider.currentIndex;
 
 export const selectActiveTab = (state) => state.camperTab.activeTab;
+
+export const selectDraftFilters = (state) => state.filters.draft;
