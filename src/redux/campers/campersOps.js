@@ -1,12 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { instance } from "../api/axiosInstance";
+import { getCampers, getCamperById } from "./campersApi";
 
 export const fetchCampers = createAsyncThunk(
     "campers/fetchAll",
     async (_, { rejectWithValue }) => {
         try {
-            const response = await instance.get("/campers");
-            return response.data;
+            return await getCampers();
         } catch (error) {
             return rejectWithValue(error.response?.data || error.message);
         }
