@@ -8,7 +8,6 @@ import {
     resetFilters,
 } from "../../redux/filters/filtersSlice";
 import { resetVisibleCount } from "../../redux/campers/campersSlice";
-import { fetchFilteredCampers } from "../../redux/campers/campersOps";
 
 import Map from '../../assets/icons/map/map.svg?react';
 import AC from '../../assets/icons/category-icons/ac.svg?react';
@@ -48,7 +47,6 @@ const SortControl = () => {
         e.preventDefault();
         dispatch(resetVisibleCount());
         dispatch(applyFilters());
-        dispatch(fetchFilteredCampers(draft));
         setShowDropdown(false);
     };
 
@@ -95,6 +93,7 @@ const SortControl = () => {
             </div>
 
             <span className={css.filters_label}>Filters</span>
+
             <div className={css.filters_container}>
                 <span className={css.filters_vehicle_label}>Vehicle Equipment</span>
                 <div className={css.divider} />
@@ -103,11 +102,11 @@ const SortControl = () => {
                         checked={draft.equipment.includes("AC")}
                         onChange={() => dispatch(toggleDraftEquipment("AC"))} />
                     <SortCard icon={Transmission} text="Automatic" type="checkbox"
-                        checked={draft.equipment.includes("automatic")}
-                        onChange={() => dispatch(toggleDraftEquipment("automatic"))} />
+                        checked={draft.equipment.includes("Automatic")}
+                        onChange={() => dispatch(toggleDraftEquipment("Automatic"))} />
                     <SortCard icon={Cup} text="Kitchen" type="checkbox"
-                        checked={draft.equipment.includes("kitchen")}
-                        onChange={() => dispatch(toggleDraftEquipment("kitchen"))} />
+                        checked={draft.equipment.includes("Kitchen")}
+                        onChange={() => dispatch(toggleDraftEquipment("Kitchen"))} />
                     <SortCard icon={TV} text="TV" type="checkbox"
                         checked={draft.equipment.includes("TV")}
                         onChange={() => dispatch(toggleDraftEquipment("TV"))} />
@@ -122,35 +121,35 @@ const SortControl = () => {
                 <div className={css.divider} />
                 <div className={css.sort_cards_container}>
                     <SortCard icon={Van} text="Van" type="radio" name="vehicle-type"
-                        checked={draft.vehicleType === "panelTruck"}
-                        onChange={() => dispatch(setDraftVehicleType("panelTruck"))} />
+                        checked={draft.vehicleType === "Van"}
+                        onChange={() => dispatch(setDraftVehicleType("Van"))} />
                     <SortCard icon={FullyIntegrated} text="Fully Integrated" type="radio" name="vehicle-type"
-                        checked={draft.vehicleType === "fullyIntegrated"}
-                        onChange={() => dispatch(setDraftVehicleType("fullyIntegrated"))} />
+                        checked={draft.vehicleType === "Fully Integrated"}
+                        onChange={() => dispatch(setDraftVehicleType("Fully Integrated"))} />
                     <SortCard icon={Alcove} text="Alcove" type="radio" name="vehicle-type"
-                        checked={draft.vehicleType === "alcove"}
-                        onChange={() => dispatch(setDraftVehicleType("alcove"))} />
+                        checked={draft.vehicleType === "Alcove"}
+                        onChange={() => dispatch(setDraftVehicleType("Alcove"))} />
                 </div>
             </div>
 
             <div className={css.buttons_container}>
-                <ReusableButton
-                    text="Reset"
-                    type="button"
-                    customPadding="16px 60px"
-                    variant="reset"
-                    onClick={() => {
-                        dispatch(resetFilters());
-                        dispatch(resetVisibleCount());
-                        dispatch(fetchFilteredCampers({}));
-                    }}
+                {/* custom paddings, because there are multiple ReusableButtons on the site, which are different on these styles */}
+            <ReusableButton
+                text="Reset"
+                type="button"
+                customPadding="16px 60px"
+                variant="reset"
+                onClick={() => {
+                    dispatch(resetFilters());
+                    dispatch(resetVisibleCount());
+                }}
+            />
+            <ReusableButton
+                text="Search"
+                type="submit"
+                customPadding="16px 56.5px"
                 />
-                <ReusableButton
-                    text="Search"
-                    type="submit"
-                    customPadding="16px 56.5px"
-                />
-            </div>
+                </div>
         </form>
     );
 };

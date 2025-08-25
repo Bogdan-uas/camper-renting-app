@@ -18,24 +18,6 @@ There are two routes:
 - GET /campers (you get all campers)
 - GET /campers/:id (you get a specific camper, depending on the id)
 
-## Main Functionality
-
-- Camper filtering by few parameters
-- The detailed info about every camper and even more detailed on the specific
-  camper's page
-- The possibility to send your connection info for any camper in the form
-- The possibility to watch reviews of other people for a camper
-
-## Used Technologies
-
-- React.js
-- CSS-modules
-- React Router
-- Redux
-- Axios
-- React Datepicker
-- REST API
-
 ## Author
 
 [Bogdan-uas](https://github.com/Bogdan-uas), GitHub nickname
